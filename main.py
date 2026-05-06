@@ -17,6 +17,7 @@ def index():
     cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cur.execute("SELECT * FROM books")
     books = cur.fetchall()
+    print(books)
     cur.close()
     return render_template('index.html', books=books)
 
@@ -52,6 +53,7 @@ def toggle_available(id):
     mysql.connection.commit()
     cur.close()
     return redirect(url_for('index'))
+
 @app.route('/book/<int:id>/delete', methods=['POST'])
 def delete_book(id):
     cur = mysql.connection.cursor()
