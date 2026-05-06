@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Grade Calculator</h2>
+    <p>This is the grade calculator page. Here you can input your grades and calculate your overall average.</p>
+    <form action="/calculate" method="post">
+        <input type="text" name="grade" placeholder="Grade 1">
+        <button type="submit">Send</button>
+    </form>
+{% endblock %}

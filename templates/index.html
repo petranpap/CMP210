@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="page-header">
+    <h1>Book List</h1>
+    <a href="{{ url_for('new_book') }}" class="btn btn-primary">+ Add Book</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book['title'] }}</td>
+            <td>{{ book['author'] }}</td>
+            <td>{{ book['genre'] }}</td>
+            <td>
+                <span class="badge {{ 'badge-green' if book['available'] else 'badge-red' }}">
+                    {{ 'Available' if book['available'] else 'Checked Out' }}
+                </span>
+            </td>
+            <td class="actions">
+                <form method="POST" action="/book/{{ book['id'] }}/toggle">
+                    <button class="btn btn-sm btn-secondary">Toggle</button>
+                </form>
+                <form method="POST" action="/book/{{ book['id'] }}/delete"
+                      onsubmit="return confirm('Διαγραφή;')">
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
