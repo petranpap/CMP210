@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dashboard">
+    <h1>👤 User Dashboard</h1>
+    <div class="info-box">
+        <p>✅ Logged in ως: <strong>{{ session.username }}</strong></p>
+        <p>🔑 Role: <strong>{{ session.role }}</strong></p>
+        <p>🆔 User ID: <strong>{{ session.user_id }}</strong></p>
+    </div>
+    <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+</div>
+{% endblock %}

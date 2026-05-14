@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dashboard">
+    <h1>⚙️ Admin Dashboard</h1>
+    <div class="info-box">
+        <p>✅ Logged in ως: <strong>{{ session.username }}</strong></p>
+        <p>🔑 Role: <strong>{{ session.role }}</strong></p>
+    </div>
+    <h2>Όλοι οι Χρήστες</h2>
+    <table class="table">
+        <thead>
+            <tr><th>ID</th><th>Username</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user['id'] }}</td>
+                <td>{{ user['username'] }}</td>
+                <td>
+                    <span class="badge {{ 'badge-red' if user['role'] == 'admin' else 'badge-green' }}">
+                        {{ user['role'] }}
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+</div>
+{% endblock %}

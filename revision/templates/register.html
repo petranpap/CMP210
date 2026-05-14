@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="form-card">
+    <h2>Εγγραφή</h2>
+    <form method="POST" action="{{ url_for('register') }}">
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" required autofocus>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label>Επιβεβαίωση Password</label>
+            <input type="password" name="confirm" required>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Εγγραφή</button>
+        </div>
+    </form>
+    <p class="form-footer">
+        Έχεις ήδη λογαριασμό; <a href="{{ url_for('login') }}">Login</a>
+    </p>
+</div>
+{% endblock %}
